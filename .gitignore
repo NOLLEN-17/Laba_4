@@ -1,0 +1,22 @@
+# Python кэш и скомпилированные файлы
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальные окружения
+venv/
+env/
+ENV/
+.env
+
+# Дистрибутивы и сборка
+build/
+dist/
+*.egg-info/
+
+# Системные файлы и IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

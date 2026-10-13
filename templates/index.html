@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа: Нейросети на FastAPI</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; }
+        .container { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 500px; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #333; }
+        input { margin: 5px 0; padding: 8px; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 15px; padding: 10px 15px; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 15px; font-weight: bold; color: #28a745; background: #e9f7ef; padding: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h1>Сервис классификации и регрессии (Wine Dataset)</h1>
+
+    <!-- Форма классификации (4 признака) -->
+    <div class="container">
+        <h2>1. Классификация вина</h2>
+        <form method="post" action="/classify">
+            <label>Алкоголь:</label>
+            <input type="number" step="any" name="f1" value="13.2" required>
+
+            <label>Яблочная кислота:</label>
+            <input type="number" step="any" name="f2" value="2.77" required>
+
+            <label>Пепел:</label>
+            <input type="number" step="any" name="f3" value="2.51" required>
+
+            <label>Щелочность пепла:</label>
+            <input type="number" step="any" name="f4" value="19.4" required>
+
+            <button type="submit">Классифицировать</button>
+        </form>
+        {% if class_result %}
+            <div class="result">Результат: {{ class_result }}</div>
+        {% endif %}
+    </div>
+
+    <!-- Форма регрессии (3 признака для предсказания 4-го) -->
+    <div class="container">
+        <h2>2. Регрессия (Предсказание щелочности пепла)</h2>
+        <form method="post" action="/regress">
+            <label>Алкоголь:</label>
+            <input type="number" step="any" name="r1" value="13.2" required>
+
+            <label>Яблочная кислота:</label>
+            <input type="number" step="any" name="r2" value="2.77" required>
+
+            <label>Пепел:</label>
+            <input type="number" step="any" name="r3" value="2.51" required>
+
+            <button type="submit">Предсказать значение</button>
+        </form>
+        {% if reg_result %}
+            <div class="result">Результат: {{ reg_result }}</div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
